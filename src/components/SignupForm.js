@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { signup } from "../store/actions/userActions";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -14,13 +15,15 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Paper } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    padding: "inherit"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -42,17 +45,21 @@ function SignupForm({ signup }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [practician, setPractician] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const data = { email, password, firstName, lastName, practician };
 
   const handleSubmit = event => {
     event.preventDefault();
     console.log("submit");
-    signup(email, password);
+    signup(data);
+    setSubmitted(true);
   };
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <Paper elevation={3} className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -145,7 +152,7 @@ function SignupForm({ signup }) {
             </Grid>
           </Grid>
         </form>
-      </div>
+      </Paper>
       <Box mt={5}></Box>
     </Container>
   );
