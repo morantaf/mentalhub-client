@@ -1,7 +1,6 @@
+import React from "react";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
-
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -23,13 +22,20 @@ export default function UserForm(props) {
   return (
     <Paper elevation={3}>
       <div className={classes.root}>
-        <h1>Login</h1>
+        <h1>Signup</h1>
         <form onSubmit={props.onSubmit}>
           <TextField
             required
             label="Email"
             name="email"
             value={props.values.email}
+            onChange={props.onChange}
+          />
+          <TextField
+            required
+            label="Username"
+            name="username"
+            value={props.values.username}
             onChange={props.onChange}
           />
 
