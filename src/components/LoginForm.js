@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { login } from "../store/actions/userActions";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
-
+import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -32,33 +32,37 @@ function LoginForm({ login }) {
 
   console.log("email ?", email);
   return (
-    <Paper elevation={3}>
-      <div className={classes.root}>
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <TextField
-            required
-            label="Email"
-            name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
+    <div>
+      <Container maxWidth="sm">
+        <Paper elevation={3}>
+          <div className={classes.root}>
+            <h1>Login</h1>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                required
+                label="Email"
+                name="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
 
-          <TextField
-            required
-            label="password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
+              <TextField
+                required
+                label="password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+              />
 
-          <Button variant="contained" type="submit">
-            Submit
-          </Button>
-        </form>
-      </div>
-    </Paper>
+              <Button variant="contained" type="submit">
+                Submit
+              </Button>
+            </form>
+          </div>
+        </Paper>
+      </Container>
+    </div>
   );
 }
 
