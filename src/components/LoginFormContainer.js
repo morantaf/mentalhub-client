@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import UserForm from "./UserForm";
+import LoginForm from "./LoginForm";
 import { login } from "../store/actions/userActions";
 
 class LoginFormContainer extends Component {
   state = {
-    login: true,
     email: "",
     password: ""
   };
@@ -31,7 +30,7 @@ class LoginFormContainer extends Component {
     if (this.props.user) return <h1> Welcome {this.props.user}</h1>;
     return (
       <div>
-        <UserForm
+        <LoginForm
           values={this.state}
           onChange={this.onChange}
           onSubmit={this.onSubmit}

@@ -1,13 +1,12 @@
 import React from "react";
 import NavbarContainer from "./components/NavbarContainer";
 import { Route } from "react-router-dom";
-import LoginFormContainer from "./components/LoginFormContainer";
-
+import LoginForm from "./components/LoginForm";
 function App() {
   return (
     <div className="App">
       <NavbarContainer />
-      <Route exact path="/login" component={LoginFormContainer} />
+      <Route exact path="/login" component={LoginForm} />
     </div>
   );
 }

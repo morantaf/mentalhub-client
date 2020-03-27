@@ -1,7 +1,9 @@
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { login } from "../store/actions/userActions";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 
-import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 
@@ -17,20 +19,29 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function UserForm(props) {
+function LoginForm({ login }) {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    console.log("submit");
+    login(email, password);
+  };
+
+  console.log("email ?", email);
   return (
     <Paper elevation={3}>
       <div className={classes.root}>
         <h1>Login</h1>
-        <form onSubmit={props.onSubmit}>
+        <form onSubmit={handleSubmit}>
           <TextField
             required
             label="Email"
             name="email"
-            value={props.values.email}
-            onChange={props.onChange}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
           />
 
           <TextField
@@ -38,8 +49,8 @@ export default function UserForm(props) {
             label="password"
             name="password"
             type="password"
-            value={props.values.password}
-            onChange={props.onChange}
+            value={password}
+            onChange={e => setPassword(e.target.value)}
           />
 
           <Button variant="contained" type="submit">
@@ -50,3 +61,5 @@ export default function UserForm(props) {
     </Paper>
   );
 }
+
+export default connect(null, { login })(LoginForm);
