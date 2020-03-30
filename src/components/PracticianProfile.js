@@ -10,6 +10,7 @@ import ContactCard from "./ContactCard";
 import { singlePractician } from "../store/actions/practicianAction";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import ProfileHeader from "./ProfileHeader";
 
 const baseUrl = "http://localhost:4000";
 
@@ -29,18 +30,14 @@ const useStyles = makeStyles(theme => ({
     marginBottom: 10,
     marginTop: 10,
     marginLeft: "20%",
-    width: 500
+    width: 800
   },
   cardIcon: {
     alignSelf: "center",
     marginRight: 10
   },
-  background: {
+  page: {
     backgroundColor: "azure"
-  },
-  top: {
-    height: 300,
-    backgroundColor: "lightsteelblue"
   }
 }));
 
@@ -58,28 +55,34 @@ function PracticianProfile(props) {
     }
     fetchPractician(id);
   }, []);
+
   return (
-    <div className={classes.background}>
-      <div className={classes.top} />
+    <div className={classes.page}>
       {practician ? (
-        <Grid container className={classes.root} spacing={2}>
-          <PresentationCard
-            description={practician.presentation}
-            languages={practician.user.languages}
-            style={classes}
+        <div>
+          <ProfileHeader
+            firstName={practician.user.firstName}
+            lastName={practician.user.lastName}
           />
-          <PricesCard pricesList={practician.prices} style={classes} />
-          <SpecializationsCard
-            specializationsList={practician.specializations}
-            style={classes}
-          />
-          <EducationCard education={practician.education} style={classes} />
-          <ContactCard
-            style={classes}
-            email={practician.user.email}
-            phoneNumber={practician.user.whatsAppNumber}
-          />
-        </Grid>
+          <Grid container className={classes.root} spacing={2}>
+            <PresentationCard
+              description={practician.presentation}
+              languages={practician.user.languages}
+              style={classes}
+            />
+            <PricesCard pricesList={practician.prices} style={classes} />
+            <SpecializationsCard
+              specializationsList={practician.specializations}
+              style={classes}
+            />
+            <EducationCard education={practician.education} style={classes} />
+            <ContactCard
+              style={classes}
+              email={practician.user.email}
+              phoneNumber={practician.user.whatsAppNumber}
+            />
+          </Grid>
+        </div>
       ) : (
         <p>loading...</p>
       )}
