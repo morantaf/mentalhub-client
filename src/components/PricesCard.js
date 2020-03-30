@@ -3,42 +3,41 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import EuroIcon from "@material-ui/icons/Euro";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
-  root: {
-    minWidth: 275
+  section: {
+    display: "flex"
   },
-  bullet: {
-    display: "inline-block",
-    margin: "50px 50px",
-    transform: "scale(0.8)"
-  },
-  title: {
-    fontSize: 14
-  },
-  pos: {
-    marginBottom: 12
+  sectionTitle: {
+    flex: 1
   }
 });
 
-export default function SimpleCard(props) {
+export default function PricesCard(props) {
   const classes = useStyles();
-  const blabla = props.pricesList;
-  console.log("blabla ?", blabla);
+  const pricesList = props.pricesList;
 
   return (
     <Card className={props.style.card} variant="outlined">
       <CardContent>
-        <Typography variant="h5" component="h2">
-          Presentation
-        </Typography>
+        <Grid container>
+          <EuroIcon className={props.style.cardIcon} />
+          <Typography variant="h5" component="h2">
+            Prices
+          </Typography>
+        </Grid>
         <hr />
-        {blabla.map(price => {
+        {pricesList.map(price => {
           return (
             <div>
-              <Typography variant="body2" component="p">
-                {price}
-              </Typography>
+              <div className={classes.section}>
+                <p className={classes.sectionTitle}>Adult</p>
+                <p>
+                  <b>{price} €</b>
+                </p>
+              </div>
               <hr />
             </div>
           );
