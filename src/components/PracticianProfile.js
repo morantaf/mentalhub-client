@@ -14,17 +14,12 @@ import ProfileHeader from "./ProfileHeader";
 
 const baseUrl = "http://localhost:4000";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   root: {
     flexGrow: 1,
-    flexDirection: "column"
-  },
-  paper: {
-    height: 140,
-    width: 100
-  },
-  control: {
-    padding: theme.spacing(2)
+    flexDirection: "column",
+    marginBottom: 20,
+    marginTop: 20
   },
   card: {
     marginBottom: 10,
@@ -39,13 +34,12 @@ const useStyles = makeStyles(theme => ({
   page: {
     backgroundColor: "azure"
   }
-}));
+});
 
 function PracticianProfile(props) {
   const dispatch = useDispatch();
   const classes = useStyles();
   const practician = useSelector(state => state.practician.displayedPractician);
-  console.log(practician);
   useEffect(() => {
     const id = props.match.params.id;
     async function fetchPractician(id) {
