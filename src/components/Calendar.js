@@ -11,7 +11,8 @@ import {
   Toolbar,
   DateNavigator,
   Appointments,
-  TodayButton
+  TodayButton,
+  AppointmentForm
 } from "@devexpress/dx-react-scheduler-material-ui";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { blue } from "@material-ui/core/colors";
@@ -32,11 +33,39 @@ function Calendar() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState("2020-04-05");
+  const [addedAppointment, setAddedAppointment] = useState({});
   const appointments = useSelector(
     state => state.appointment.appointmentsPractician
   );
   const currentDateChange = currentDate => {
     setCurrentDate(currentDate);
+  };
+  console.log("added appointment ?", addedAppointment);
+  const commitChanges = ({ added, changed, deleted }) => {
+    if (added) {
+      const newAppointment = {
+        userId: 2,
+        PracticiansFileId: 1,
+        startDate: added.startDate,
+        endDate: added.endDate
+      };
+      async function postAppointment(data) {
+        try {
+          console.log("data ?", data);
+          const appointment = await request
+            .post(`${baseUrl}/appointments`)
+            .send(data);
+          const action = {
+            type: "APPOINTMENT_CREATED",
+            payload: appointment.body
+          };
+          dispatch(action);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      postAppointment(newAppointment);
+    }
   };
 
   useEffect(() => {
@@ -64,10 +93,17 @@ function Calendar() {
         />
         <WeekView startDayHour={9} endDayHour={19} />
         <Toolbar />
-        <EditingState />
+        <EditingState
+          onCommitChanges={commitChanges}
+          addedAppointment={addedAppointment}
+          onAddedAppointmentChange={addedAppointment =>
+            setAddedAppointment(addedAppointment)
+          }
+        />
         <DateNavigator />
         <TodayButton />
         <Appointments />
+        <AppointmentForm />
       </Scheduler>
     </Paper>
   );
