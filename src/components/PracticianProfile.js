@@ -57,6 +57,10 @@ function PracticianProfile(props) {
           <ProfileHeader
             firstName={practician.user.firstName}
             lastName={practician.user.lastName}
+<<<<<<< Updated upstream
+=======
+            profilePicture={practician.user.profilePicture}
+>>>>>>> Stashed changes
           />
           <Grid container className={classes.root} spacing={2}>
             <PresentationCard
