@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { render } from "react-dom";
+import React, { useState, useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import request from "superagent";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import { ViewState } from "@devexpress/dx-react-scheduler";
+import { ViewState, EditingState } from "@devexpress/dx-react-scheduler";
 import {
   Scheduler,
   WeekView,
@@ -15,6 +17,7 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { blue } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({ palette: { type: "light", primary: blue } });
+const baseUrl = "http://localhost:4000";
 
 const useStyles = makeStyles({
   root: {
@@ -25,19 +28,43 @@ const useStyles = makeStyles({
   }
 });
 
-export default function Calendar() {
+function Calendar() {
   const classes = useStyles();
-  const [data, setData] = useState("");
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const dispatch = useDispatch();
+  const [currentDate, setCurrentDate] = useState("2020-04-05");
+  const appointments = useSelector(
+    state => state.appointment.appointmentsPractician
+  );
+  const currentDateChange = currentDate => {
+    setCurrentDate(currentDate);
+  };
+
+  useEffect(() => {
+    const id = 1;
+    async function fetchAppointments(id) {
+      const appointments = await request.get(
+        `${baseUrl}/appointments/practician/${id}`
+      );
+
+      const action = {
+        type: "PRACTICIAN_APPOINTMENTS",
+        payload: appointments.body
+      };
+      dispatch(action);
+    }
+    fetchAppointments(id);
+  }, []);
+
   return (
     <Paper className={classes.root}>
-      <Scheduler height={660}>
+      <Scheduler data={appointments} height={660}>
         <ViewState
           currentDate={currentDate}
-          // onCurrentDateChange={this.currentDateChange}
+          onCurrentDateChange={currentDateChange}
         />
         <WeekView startDayHour={9} endDayHour={19} />
         <Toolbar />
+        <EditingState />
         <DateNavigator />
         <TodayButton />
         <Appointments />
@@ -45,3 +72,5 @@ export default function Calendar() {
     </Paper>
   );
 }
+
+export default connect(null)(Calendar);
