@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   }
 });
 
-function Calendar() {
+function Calendar(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState("2020-04-05");
@@ -41,7 +41,7 @@ function Calendar() {
     if (added) {
       const newAppointment = {
         userId: 2,
-        PracticiansFileId: 1,
+        PracticiansFileId: props.practicianId,
         startDate: added.startDate,
         endDate: added.endDate
       };

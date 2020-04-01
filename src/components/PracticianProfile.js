@@ -61,7 +61,7 @@ function PracticianProfile(props) {
             profilePicture={practician.user.profilePicture}
           />
           <Grid container className={classes.root} spacing={2}>
-            <Calendar />
+            <Calendar practicianId={practician.id} />
             <PresentationCard
               description={practician.presentation}
               languages={practician.user.languages}

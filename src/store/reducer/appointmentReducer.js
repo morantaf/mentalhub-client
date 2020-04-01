@@ -1,15 +1,15 @@
 const initialState = {
-  appointmentPractician: []
+  appointmentsPractician: []
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case "PRACTICIAN_APPOINTMENTS":
-      return { ...state, appointmentPractician: payload };
+      return { ...state, appointmentsPractician: payload };
     case "APPOINTMENT_CREATED":
       return {
         ...state,
-        appointmentPractician: [...state.appointmentPractician, payload]
+        appointmentsPractician: [...state.appointmentsPractician, payload]
       };
 
     default:
