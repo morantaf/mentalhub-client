@@ -33,15 +33,9 @@ export default function PricesCard(props) {
           return (
             <div>
               <div className={classes.section}>
-<<<<<<< Updated upstream
-                <p className={classes.sectionTitle}>Adult</p>
-                <p>
-                  <b>{price} €</b>
-=======
                 <p className={classes.sectionTitle}>{Object.keys(price)}</p>
                 <p>
                   <b>{Object.values(price)} €</b>
->>>>>>> Stashed changes
                 </p>
               </div>
               <hr />

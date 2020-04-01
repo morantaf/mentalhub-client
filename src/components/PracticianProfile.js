@@ -11,6 +11,7 @@ import { singlePractician } from "../store/actions/practicianAction";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import ProfileHeader from "./ProfileHeader";
+import Calendar from "./Calendar";
 
 const baseUrl = "http://localhost:4000";
 
@@ -57,12 +58,10 @@ function PracticianProfile(props) {
           <ProfileHeader
             firstName={practician.user.firstName}
             lastName={practician.user.lastName}
-<<<<<<< Updated upstream
-=======
             profilePicture={practician.user.profilePicture}
->>>>>>> Stashed changes
           />
           <Grid container className={classes.root} spacing={2}>
+            <Calendar />
             <PresentationCard
               description={practician.presentation}
               languages={practician.user.languages}

@@ -14,10 +14,6 @@ import {
   TodayButton,
   AppointmentForm
 } from "@devexpress/dx-react-scheduler-material-ui";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { blue } from "@material-ui/core/colors";
-
-const theme = createMuiTheme({ palette: { type: "light", primary: blue } });
 const baseUrl = "http://localhost:4000";
 
 const useStyles = makeStyles({
