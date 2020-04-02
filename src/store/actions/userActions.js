@@ -17,7 +17,7 @@ export const login = (mail, pass) => async dispatch => {
     const response = await request
       .post(`${baseUrl}/login`)
       .send({ email: mail, password: pass });
-
+    console.log(response.body);
     const action = getJwt(response.body);
     dispatch(action);
   } catch (error) {

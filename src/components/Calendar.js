@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import request from "superagent";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -33,6 +32,7 @@ function Calendar(props) {
   const appointments = useSelector(
     state => state.appointment.appointmentsPractician
   );
+  const auth = useSelector(state => state.user.auth);
   const currentDateChange = currentDate => {
     setCurrentDate(currentDate);
   };
@@ -50,6 +50,7 @@ function Calendar(props) {
           console.log("data ?", data);
           const appointment = await request
             .post(`${baseUrl}/appointments`)
+            .set("Authorization", `Bearer ${auth}`)
             .send(data);
           const action = {
             type: "APPOINTMENT_CREATED",
@@ -65,7 +66,7 @@ function Calendar(props) {
   };
 
   useEffect(() => {
-    const id = 1;
+    const id = props.practicianId;
     async function fetchAppointments(id) {
       const appointments = await request.get(
         `${baseUrl}/appointments/practician/${id}`

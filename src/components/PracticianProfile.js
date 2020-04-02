@@ -12,6 +12,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import ProfileHeader from "./ProfileHeader";
 import Calendar from "./Calendar";
+import { Paper, Typography } from "@material-ui/core";
 
 const baseUrl = "http://localhost:4000";
 
@@ -19,7 +20,6 @@ const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     flexDirection: "column",
-    marginBottom: 20,
     marginTop: 20
   },
   card: {
@@ -37,10 +37,11 @@ const useStyles = makeStyles({
   }
 });
 
-function PracticianProfile(props) {
+export default function PracticianProfile(props) {
   const dispatch = useDispatch();
   const classes = useStyles();
   const practician = useSelector(state => state.practician.displayedPractician);
+  const auth = useSelector(state => state.user.auth);
   useEffect(() => {
     const id = props.match.params.id;
     async function fetchPractician(id) {
@@ -60,8 +61,14 @@ function PracticianProfile(props) {
             lastName={practician.user.lastName}
             profilePicture={practician.user.profilePicture}
           />
-          <Grid container className={classes.root} spacing={2}>
-            <Calendar practicianId={practician.id} />
+          <Grid container className={classes.root}>
+            {auth ? (
+              <Calendar practicianId={practician.id} />
+            ) : (
+              <Paper className={classes.card}>
+                <Typography>Please log in to make an appointment</Typography>
+              </Paper>
+            )}
             <PresentationCard
               description={practician.presentation}
               languages={practician.user.languages}
@@ -86,5 +93,3 @@ function PracticianProfile(props) {
     </div>
   );
 }
-
-export default connect(null)(PracticianProfile);
