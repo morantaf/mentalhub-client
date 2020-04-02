@@ -7,10 +7,15 @@ export const singlePractician = payload => ({
   payload
 });
 
-export const fetchPractician = id => async (dispatch, getState) => {
+export const createPractician = data => async (dispatch, getState) => {
   try {
-    const practician = await request.get(`${baseUrl}/practicians/${id}`);
-    console.log(practician);
+    const state = getState();
+    console.log("create Practician ? Data:", data);
+    const createdPractician = await request
+      .post(`${baseUrl}/practicians`)
+      .set("Authorization", `Bearer ${state.user.auth}`)
+      .send(data);
+    console.log(createdPractician.body);
   } catch (error) {
     console.error(error);
   }
