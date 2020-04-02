@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+
   }
 }));
 
@@ -120,8 +121,6 @@ function LoginForm({ login }) {
             </form>
           </Paper>
         )}
-
-        <Box mt={5}></Box>
       </Container>
     </div>
   );
