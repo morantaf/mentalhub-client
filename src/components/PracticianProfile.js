@@ -11,6 +11,7 @@ import { singlePractician } from "../store/actions/practicianAction";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import ProfileHeader from "./ProfileHeader";
+import Calendar from "./Calendar";
 
 const baseUrl = "http://localhost:4000";
 
@@ -60,6 +61,7 @@ function PracticianProfile(props) {
             profilePicture={practician.user.profilePicture}
           />
           <Grid container className={classes.root} spacing={2}>
+            <Calendar practicianId={practician.id} />
             <PresentationCard
               description={practician.presentation}
               languages={practician.user.languages}

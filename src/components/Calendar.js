@@ -14,10 +14,6 @@ import {
   TodayButton,
   AppointmentForm
 } from "@devexpress/dx-react-scheduler-material-ui";
-import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { blue } from "@material-ui/core/colors";
-
-const theme = createMuiTheme({ palette: { type: "light", primary: blue } });
 const baseUrl = "http://localhost:4000";
 
 const useStyles = makeStyles({
@@ -29,7 +25,7 @@ const useStyles = makeStyles({
   }
 });
 
-function Calendar() {
+function Calendar(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState("2020-04-05");
@@ -45,7 +41,7 @@ function Calendar() {
     if (added) {
       const newAppointment = {
         userId: 2,
-        PracticiansFileId: 1,
+        PracticiansFileId: props.practicianId,
         startDate: added.startDate,
         endDate: added.endDate
       };
