@@ -63,11 +63,6 @@ export default function PracticianCard(props) {
                 </ButtonBase>
               </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="subtitle1">
-                {props.price[0]["Adult"]}
-              </Typography>
-            </Grid>
           </Grid>
         </Grid>
       </Paper>

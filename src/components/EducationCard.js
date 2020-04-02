@@ -1,4 +1,5 @@
 import React from "react";
+import { format } from "date-fns";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -7,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 
 export default function EducationCard(props) {
   const education = props.education;
-
+  console.log("education ?", education);
   return (
     <Card className={props.style.card} variant="outlined">
       <CardContent>
@@ -21,9 +22,16 @@ export default function EducationCard(props) {
         {education.map(education => {
           return (
             <div>
-              <p>
-                <b>{education}</b>
-              </p>
+              <Typography variant="h6" component="h6">
+                <b>{education.school}</b>
+              </Typography>
+              <Typography variant="body1">
+                <b>Diploma obtained:</b> {education.diploma}
+              </Typography>
+              <Typography variant="subtitle2">
+                From :{format(new Date(education.startDate), "MM/dd/yyyy")} till{" "}
+                {format(new Date(education.endDate), "MM/dd/yyyy")}
+              </Typography>
               <hr />
             </div>
           );

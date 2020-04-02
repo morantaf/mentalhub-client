@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -15,8 +16,11 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function ButtonAppBar() {
+export default function NavBar() {
   const classes = useStyles();
+  const auth = useSelector(state => state.user.auth);
+  const id = useSelector(state => state.user.userId);
+  const practician = useSelector(state => state.user.practician);
 
   return (
     <div className={classes.root}>
@@ -25,12 +29,34 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Mentalhub
           </Typography>
-          <Button color="inherit" component={Link} to="/login">
-            LOGIN
+          <Button color="inherit" component={Link} to="/practicians">
+            List of practicians
           </Button>
-          <Button color="inherit" component={Link} to="/signup">
-            SIGNUP
-          </Button>
+          {!auth ? (
+            <div>
+              <Button color="inherit" component={Link} to="/login">
+                LOGIN
+              </Button>
+              <Button color="inherit" component={Link} to="/signup">
+                SIGNUP
+              </Button>
+            </div>
+          ) : (
+            <div>
+              {practician ? (
+                <Button
+                  color="inherit"
+                  component={Link}
+                  to={`/practician-form`}
+                >
+                  Fill your information
+                </Button>
+              ) : null}
+              {/* <Button color="inherit" component={Link} to={`/user/${id}`}>
+                MY PROFILE
+              </Button> */}
+            </div>
+          )}
         </Toolbar>
       </AppBar>
     </div>

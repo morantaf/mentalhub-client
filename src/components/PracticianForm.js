@@ -43,20 +43,19 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function PracticianForm() {
+function PracticianForm({ createPractician }) {
   const classes = useStyles();
   const [presentation, setPresentation] = useState("");
   const [specializations, setSpecialization] = useState([]);
   const [education, setEducation] = useState([]);
   const [specializationEdit, setSpecializationEdit] = useState("");
-  const [price, setPrice] = useState([]);
-  const [submitted, setSubmitted] = useState(false);
+  const [prices, setPrices] = useState([]);
 
-  const data = { education, price, presentation, specializations };
-  const handleSubmit = event => {
-    event.preventDefault();
+  const data = { education, prices, presentation, specializations };
+  console.log("data ?", data);
+  const handleSubmit = () => {
+    console.log("submit");
     createPractician(data);
-    setSubmitted(true);
   };
 
   const addEducation = data => {
@@ -64,7 +63,7 @@ function PracticianForm() {
   };
 
   const addPrice = data => {
-    setPrice([...price, data]);
+    setPrices([...prices, data]);
   };
 
   return (
@@ -74,83 +73,82 @@ function PracticianForm() {
         <Typography component="h1" variant="h5">
           Please complete your file
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                name="presentation"
-                variant="outlined"
-                multiline
-                fullWidth
-                id="presentation"
-                label="Write a short paragraphe about yourself"
-                value={presentation}
-                onChange={e => setPresentation(e.target.value)}
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={6}>
-              {specializations.map(specialization => {
-                return <Chip label={specialization} className={classes.chip} />;
-              })}
-              <TextField
-                variant="outlined"
-                fullWidth
-                id="specializations"
-                label="Specializations"
-                name="specializations"
-                value={specializationEdit}
-                onChange={e => setSpecializationEdit(e.target.value)}
-              />
-              <Button
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-                onClick={() => {
-                  setSpecialization([...specializations, specializationEdit]);
-                  setSpecializationEdit("");
-                }}
-              >
-                Add
-              </Button>
-            </Grid>
-            <Grid container className={classes.tagContainer} spacing={2}>
-              {education.map(education => {
-                return (
-                  <Grid item>
-                    <EducationTag
-                      school={education.school}
-                      diploma={education.diploma}
-                    />
-                  </Grid>
-                );
-              })}
-            </Grid>
-            <EducationForm addEducation={addEducation} />
-            <Grid container className={classes.tagContainer} spacing={2}>
-              {price.map(price => {
-                return (
-                  <Grid item>
-                    <PriceTag price={price} />
-                  </Grid>
-                );
-              })}
-            </Grid>
-            <PriceForm addPrice={addPrice} />
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              name="presentation"
+              variant="outlined"
+              multiline
+              fullWidth
+              id="presentation"
+              label="Write a short paragraphe about yourself"
+              value={presentation}
+              onChange={e => setPresentation(e.target.value)}
+              autoFocus
+            />
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Submit
-          </Button>
-        </form>
+          <Grid item xs={6}>
+            {specializations.map(specialization => {
+              return <Chip label={specialization} className={classes.chip} />;
+            })}
+            <TextField
+              variant="outlined"
+              fullWidth
+              id="specializations"
+              label="Specializations"
+              name="specializations"
+              value={specializationEdit}
+              onChange={e => setSpecializationEdit(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => {
+                setSpecialization([...specializations, specializationEdit]);
+                setSpecializationEdit("");
+              }}
+            >
+              Add
+            </Button>
+          </Grid>
+          <Grid container className={classes.tagContainer} spacing={2}>
+            {education.map(education => {
+              return (
+                <Grid item>
+                  <EducationTag
+                    school={education.school}
+                    diploma={education.diploma}
+                  />
+                </Grid>
+              );
+            })}
+          </Grid>
+          <EducationForm addEducation={addEducation} />
+          <Grid container className={classes.tagContainer} spacing={2}>
+            {prices.map(price => {
+              return (
+                <Grid item>
+                  <PriceTag price={price} />
+                </Grid>
+              );
+            })}
+          </Grid>
+          <PriceForm addPrice={addPrice} />
+        </Grid>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick={() => handleSubmit()}
+        >
+          Submit
+        </Button>
       </Paper>
     </Container>
   );
 }
 
-export default connect(null)(PracticianForm);
+export default connect(null, { createPractician })(PracticianForm);
