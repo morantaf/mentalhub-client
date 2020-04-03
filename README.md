@@ -45,3 +45,7 @@ The idea of mentalhub came with those people in mind. It's aiming to be the plac
 This project was created after completing the Codaisseur Bootcamp.
 
 The bootcamp lasted 8 weeks where we learned web development from the basics of Javascript to the creation of a full stack app using react. During the bootcamp, we learned that technology with class based component. Functional component being more and more used, I decided to learn it ad practice it for that project by reading the documentation
+
+## Back end
+
+You can find the repository for the back end [here](https://github.com/morantaf/mentalhub-server)
