@@ -89,6 +89,7 @@ function EducationForm(props) {
               <TextField
                 variant="outlined"
                 fullWidth
+                multiline
                 name="description"
                 label="Description"
                 id="description"

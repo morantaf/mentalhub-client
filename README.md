@@ -1,68 +1,46 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MentalHub, find your online psychotherapist
 
-## Available Scripts
+## The problem this app tries to solve
 
-In the project directory, you can run:
+In a world of social distancing due to the coronavirus pandemic, it's hard for people who needs psychological counseling to meet their practician. For some people, this difficulty is present in their everyday life, due to geographical isolation, extreme social anxiety and so on...
 
-### `npm start`
+The idea of mentalhub came with those people in mind. It's aiming to be the place where patient all over the world can find their online counselor, book an appointment and have a follow up. As a practician, it helps to reach people that wouldn't be reachable by other means.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## User stories
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+As a user, I want to be able to signup and login, I can choose to register as a patient or a practician. :heavy_check_mark:
+As a practician, I want to be able to fill my information to create my profile page :white_check_mark:
+As a patient, I want to be able to set up an appointment with a practician, I need to be logged in to make an appointment :heavy_check_mark:
+As a user, I want to receive an e-mail when an appointment is made
+As a patient, I want to be able to see a list of all the practicians
+As a user, I want to be able to see my appointments to come
 
-### `npm test`
+### Legend:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+:heavy_check_mark: : Functionality working
+:white_check_mark: : Functionality in progress
 
-### `npm run build`
+## Technology used
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### For the front end
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- React Hooks
+- Redux
+- Material-UI
+- date-fns
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### For the back end
 
-### `npm run eject`
+- Express
+- Sequelize
+- PostgreSQL Database
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Demo GIF
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[gif1](https://media.giphy.com/media/TGuKcfvjcScFlTdUmf/giphy.gif)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Creation of the project
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This project was created after completing the Codaisseur Bootcamp.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+The bootcamp lasted 8 weeks where we learned web development from the basics of Javascript to the creation of a full stack app using react. During the bootcamp, we learned that technology with class based component. Functional component being more and more used, I decided to learn it ad practice it for that project by reading the documentation
