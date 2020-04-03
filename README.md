@@ -37,7 +37,7 @@ The idea of mentalhub came with those people in mind. It's aiming to be the plac
 
 ## Demo GIF
 
-[gif1](https://media.giphy.com/media/TGuKcfvjcScFlTdUmf/giphy.gif)
+![gif1](https://media.giphy.com/media/TGuKcfvjcScFlTdUmf/giphy.gif)
 
 ## Creation of the project
 
