@@ -50,7 +50,6 @@ function SignupForm({ signup }) {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log("submit");
     signup(data);
     setSubmitted(true);
   };

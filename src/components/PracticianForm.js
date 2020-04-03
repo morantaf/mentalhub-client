@@ -52,9 +52,8 @@ function PracticianForm({ createPractician }) {
   const [prices, setPrices] = useState([]);
 
   const data = { education, prices, presentation, specializations };
-  console.log("data ?", data);
+
   const handleSubmit = () => {
-    console.log("submit");
     createPractician(data);
   };
 

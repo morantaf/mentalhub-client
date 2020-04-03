@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
-import request from "superagent";
+import React, { useEffect } from "react";
+import { connect, useSelector } from "react-redux";
 import PracticianCard from "./PracticianCard";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-const baseUrl = "http://localhost:4000";
+import { fetchPracticians } from "../store/actions/practicianAction";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -23,24 +21,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const PracticiansList = () => {
+const PracticiansList = ({ fetchPracticians }) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
   const practiciansList = useSelector(state => state.practician.list);
-  console.log("practiciansList ?", practiciansList);
   useEffect(() => {
-    async function fetchPracticians() {
-      try {
-        const practicians = await request.get(`${baseUrl}/practicians`);
-        const action = {
-          type: "FETCH_PRACTICIANS",
-          payload: practicians.body
-        };
-        dispatch(action);
-      } catch (error) {
-        console.log(error);
-      }
-    }
     fetchPracticians();
   }, []);
 
@@ -67,4 +51,4 @@ const PracticiansList = () => {
   );
 };
 
-export default connect(null)(PracticiansList);
+export default connect(null, { fetchPracticians })(PracticiansList);

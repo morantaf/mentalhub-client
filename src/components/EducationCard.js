@@ -8,7 +8,6 @@ import Grid from "@material-ui/core/Grid";
 
 export default function EducationCard(props) {
   const education = props.education;
-  console.log("education ?", education);
   return (
     <Card className={props.style.card} variant="outlined">
       <CardContent>

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import request from "superagent";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import PresentationCard from "./PresentationCard";
 import PricesCard from "./PricesCard";
@@ -14,7 +14,8 @@ import ProfileHeader from "./ProfileHeader";
 import Calendar from "./Calendar";
 import { Paper, Typography } from "@material-ui/core";
 
-const baseUrl = "http://localhost:4000";
+// const baseUrl = "http://localhost:4000";
+const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 const useStyles = makeStyles({
   root: {
