@@ -38,6 +38,8 @@ export default function PriceForm(props) {
   const handleSubmit = event => {
     event.preventDefault();
     props.addPrice(data);
+    setPrice(0);
+    setPatient("");
   };
 
   return (

@@ -49,6 +49,11 @@ function EducationForm(props) {
   const handleSubmit = event => {
     event.preventDefault();
     props.addEducation(data);
+    setSchool("");
+    setDiploma("");
+    setStarDate("");
+    setEndDate("");
+    setDescription("");
   };
 
   return (
