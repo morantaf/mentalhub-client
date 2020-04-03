@@ -1,7 +1,7 @@
 import request from "superagent";
 
-const baseUrl = "http://localhost:4000";
-// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+// const baseUrl = "http://localhost:4000";
+const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 export const singlePractician = payload => ({
   type: "SINGLE_PRACTICIAN",
