@@ -55,6 +55,10 @@ function PracticianForm({ createPractician }) {
 
   const handleSubmit = () => {
     createPractician(data);
+    setPresentation("");
+    setSpecialization([]);
+    setEducation([]);
+    setPrices([]);
   };
 
   const addEducation = data => {
