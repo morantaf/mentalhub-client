@@ -7,10 +7,10 @@ import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import MoodIcon from "@material-ui/icons/Mood";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   chip: {
-    margin: theme.spacing(0.5)
-  }
+    margin: theme.spacing(0.5),
+  },
 }));
 
 export default function SpecializationsCard(props) {
@@ -27,9 +27,11 @@ export default function SpecializationsCard(props) {
           </Typography>
         </Grid>
         <hr />
-        {specializationsList.map(specialization => {
-          return <Chip label={specialization} className={classes.chip} />;
-        })}
+        {specializationsList
+          ? specializationsList.map((specialization) => {
+              return <Chip label={specialization} className={classes.chip} />;
+            })
+          : null}
       </CardContent>
     </Card>
   );

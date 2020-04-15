@@ -7,20 +7,20 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   title: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 }));
 
 export default function NavBar() {
   const classes = useStyles();
-  const auth = useSelector(state => state.user.auth);
-  const id = useSelector(state => state.user.userId);
-  const practician = useSelector(state => state.user.practician);
+  const auth = useSelector((state) => state.user.auth);
+  const id = useSelector((state) => state.user.userId);
+  const practicianId = useSelector((state) => state.user.practicianId);
 
   return (
     <div className={classes.root}>
@@ -43,18 +43,15 @@ export default function NavBar() {
             </div>
           ) : (
             <div>
-              {practician ? (
+              {practicianId ? (
                 <Button
                   color="inherit"
                   component={Link}
-                  to={`/practician-form`}
+                  to={`/practicians/${practicianId}`}
                 >
-                  Fill your information
+                  MY PROFILE
                 </Button>
               ) : null}
-              {/* <Button color="inherit" component={Link} to={`/user/${id}`}>
-                MY PROFILE
-              </Button> */}
             </div>
           )}
         </Toolbar>

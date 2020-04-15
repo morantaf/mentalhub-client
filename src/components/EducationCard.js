@@ -18,23 +18,25 @@ export default function EducationCard(props) {
           </Typography>
         </Grid>
         <hr />
-        {education.map(education => {
-          return (
-            <div>
-              <Typography variant="h6" component="h6">
-                <b>{education.school}</b>
-              </Typography>
-              <Typography variant="body1">
-                <b>Diploma obtained:</b> {education.diploma}
-              </Typography>
-              <Typography variant="subtitle2">
-                From :{format(new Date(education.startDate), "MM/dd/yyyy")} till{" "}
-                {format(new Date(education.endDate), "MM/dd/yyyy")}
-              </Typography>
-              <hr />
-            </div>
-          );
-        })}
+        {education
+          ? education.map((education) => {
+              return (
+                <div>
+                  <Typography variant="h6" component="h6">
+                    <b>{education.school}</b>
+                  </Typography>
+                  <Typography variant="body1">
+                    <b>Diploma obtained:</b> {education.diploma}
+                  </Typography>
+                  <Typography variant="subtitle2">
+                    From :{format(new Date(education.startDate), "MM/dd/yyyy")}{" "}
+                    till {format(new Date(education.endDate), "MM/dd/yyyy")}
+                  </Typography>
+                  <hr />
+                </div>
+              );
+            })
+          : null}
       </CardContent>
     </Card>
   );

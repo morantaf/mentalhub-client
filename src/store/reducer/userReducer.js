@@ -3,7 +3,6 @@ const initialState = {
   createdUser: "",
   username: "",
   userId: 0,
-  practician: false
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -14,7 +13,7 @@ export default (state = initialState, { type, payload }) => {
         auth: payload.jwt,
         username: payload.username,
         userId: payload.userId,
-        practician: payload.practician
+        practicianId: payload.practicianId,
       };
     case "NEW_USER":
       return { ...state, createdUser: payload };

@@ -43,7 +43,7 @@ function Calendar(props) {
     if (added) {
       const newAppointment = {
         userId: 2,
-        PracticiansFileId: props.practicianId,
+        practiciansFileId: props.practicianId,
         startDate: added.startDate,
         endDate: added.endDate,
       };

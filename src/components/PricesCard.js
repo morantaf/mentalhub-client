@@ -8,11 +8,11 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles({
   section: {
-    display: "flex"
+    display: "flex",
   },
   sectionTitle: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default function PricesCard(props) {
@@ -29,19 +29,21 @@ export default function PricesCard(props) {
           </Typography>
         </Grid>
         <hr />
-        {pricesList.map(price => {
-          return (
-            <div>
-              <div className={classes.section}>
-                <p className={classes.sectionTitle}>{Object.keys(price)}</p>
-                <p>
-                  <b>{Object.values(price)} €</b>
-                </p>
-              </div>
-              <hr />
-            </div>
-          );
-        })}
+        {pricesList
+          ? pricesList.map((price) => {
+              return (
+                <div>
+                  <div className={classes.section}>
+                    <p className={classes.sectionTitle}>{Object.keys(price)}</p>
+                    <p>
+                      <b>{Object.values(price)} €</b>
+                    </p>
+                  </div>
+                  <hr />
+                </div>
+              );
+            })
+          : null}
       </CardContent>
     </Card>
   );
