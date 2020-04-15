@@ -11,19 +11,19 @@ import {
   DateNavigator,
   Appointments,
   TodayButton,
-  AppointmentForm
+  AppointmentForm,
 } from "@devexpress/dx-react-scheduler-material-ui";
 
-// const baseUrl = "http://localhost:4000";
-const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+const baseUrl = "http://localhost:4000";
+// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 const useStyles = makeStyles({
   root: {
     marginBottom: 10,
     marginTop: 10,
     marginLeft: "20%",
-    width: 800
-  }
+    width: 800,
+  },
 });
 
 function Calendar(props) {
@@ -32,10 +32,10 @@ function Calendar(props) {
   const [currentDate, setCurrentDate] = useState("2020-04-05");
   const [addedAppointment, setAddedAppointment] = useState({});
   const appointments = useSelector(
-    state => state.appointment.appointmentsPractician
+    (state) => state.appointment.appointmentsPractician
   );
-  const auth = useSelector(state => state.user.auth);
-  const currentDateChange = currentDate => {
+  const auth = useSelector((state) => state.user.auth);
+  const currentDateChange = (currentDate) => {
     setCurrentDate(currentDate);
   };
   console.log("added appointment ?", addedAppointment);
@@ -45,7 +45,7 @@ function Calendar(props) {
         userId: 2,
         PracticiansFileId: props.practicianId,
         startDate: added.startDate,
-        endDate: added.endDate
+        endDate: added.endDate,
       };
       async function postAppointment(data) {
         try {
@@ -56,7 +56,7 @@ function Calendar(props) {
             .send(data);
           const action = {
             type: "APPOINTMENT_CREATED",
-            payload: appointment.body
+            payload: appointment.body,
           };
           dispatch(action);
         } catch (error) {
@@ -76,7 +76,7 @@ function Calendar(props) {
 
       const action = {
         type: "PRACTICIAN_APPOINTMENTS",
-        payload: appointments.body
+        payload: appointments.body,
       };
       dispatch(action);
     }
@@ -95,7 +95,7 @@ function Calendar(props) {
         <EditingState
           onCommitChanges={commitChanges}
           addedAppointment={addedAppointment}
-          onAddedAppointmentChange={addedAppointment =>
+          onAddedAppointmentChange={(addedAppointment) =>
             setAddedAppointment(addedAppointment)
           }
         />

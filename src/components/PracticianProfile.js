@@ -14,35 +14,37 @@ import ProfileHeader from "./ProfileHeader";
 import Calendar from "./Calendar";
 import { Paper, Typography } from "@material-ui/core";
 
-// const baseUrl = "http://localhost:4000";
-const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+const baseUrl = "http://localhost:4000";
+// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1,
     flexDirection: "column",
-    marginTop: 20
+    marginTop: 20,
   },
   card: {
     marginBottom: 10,
     marginTop: 10,
     marginLeft: "20%",
-    width: 800
+    width: 800,
   },
   cardIcon: {
     alignSelf: "center",
-    marginRight: 10
+    marginRight: 10,
   },
   page: {
-    backgroundColor: "azure"
-  }
+    backgroundColor: "azure",
+  },
 });
 
 export default function PracticianProfile(props) {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const practician = useSelector(state => state.practician.displayedPractician);
-  const auth = useSelector(state => state.user.auth);
+  const practician = useSelector(
+    (state) => state.practician.displayedPractician
+  );
+  const auth = useSelector((state) => state.user.auth);
   useEffect(() => {
     const id = props.match.params.id;
     async function fetchPractician(id) {

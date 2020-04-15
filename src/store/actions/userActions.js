@@ -1,19 +1,19 @@
 import request from "superagent";
 
-// export const baseUrl = "http://localhost:4000";
-export const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+export const baseUrl = "http://localhost:4000";
+// export const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
-export const getJwt = payload => ({
+export const getJwt = (payload) => ({
   type: "JWT",
-  payload
+  payload,
 });
 
-export const newUser = payload => ({
+export const newUser = (payload) => ({
   type: "NEW_USER",
-  payload
+  payload,
 });
 
-export const login = (mail, pass) => async dispatch => {
+export const login = (mail, pass) => async (dispatch) => {
   try {
     const response = await request
       .post(`${baseUrl}/login`)
@@ -26,7 +26,7 @@ export const login = (mail, pass) => async dispatch => {
   }
 };
 
-export const signup = data => async dispatch => {
+export const signup = (data) => async (dispatch) => {
   try {
     const response = await request.post(`${baseUrl}/signup`).send(data);
     const action = newUser(response.body);
