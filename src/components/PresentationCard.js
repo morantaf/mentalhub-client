@@ -13,25 +13,11 @@ import TextField from "@material-ui/core/TextField";
 const baseUrl = "http://localhost:4000";
 // const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
-const updatePractician = (id, data) => async (dispatch, getState) => {
-  try {
-    const state = getState();
-    const updatedPractician = await request
-      .put(`${baseUrl}/practicians/${id}`)
-      .set("Authorization", `Bearer ${state.user.auth}`)
-      .send(data);
-    console.log(updatedPractician.body);
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 export default function PresentationCard(props) {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.user.auth);
   const [editMode, setEditMode] = useState(false);
   const [presentation, setPresentation] = useState(props.presentation);
-
   const data = { presentation: presentation };
 
   const handleSubmit = (event) => {
@@ -42,8 +28,10 @@ export default function PresentationCard(props) {
       .send(data)
       .set("Authorization", `Bearer ${auth}`)
       .then((res) => {
-        console.log(res.body);
+        const action = { type: "UPDATE_PRESENTATION", payload: res.body };
+        dispatch(action);
       });
+    setEditMode(false);
   };
   console.log(editMode);
   return (
@@ -83,7 +71,7 @@ export default function PresentationCard(props) {
         ) : (
           <div>
             <Typography variant="body2" component="p">
-              {props.description}
+              {props.presentation}
             </Typography>
             {props.loggedInPracticianId === props.practicianId ? (
               <Button

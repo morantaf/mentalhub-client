@@ -73,7 +73,7 @@ export default function PracticianProfile(props) {
               </Paper>
             )}
             <PresentationCard
-              description={practician.presentation}
+              presentation={practician.presentation}
               languages={practician.user.languages}
               practicianId={practician.id}
               loggedInPracticianId={loggedInPracticianId}
