@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import request from "superagent";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PresentationCard from "./PresentationCard";
 import PricesCard from "./PricesCard";
 import SpecializationsCard from "./SpecializationsCard";
@@ -41,6 +40,7 @@ const useStyles = makeStyles({
 export default function PracticianProfile(props) {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const loggedInPracticianId = useSelector((state) => state.user.practicianId);
   const practician = useSelector(
     (state) => state.practician.displayedPractician
   );
@@ -75,6 +75,8 @@ export default function PracticianProfile(props) {
             <PresentationCard
               description={practician.presentation}
               languages={practician.user.languages}
+              practicianId={practician.id}
+              loggedInPracticianId={loggedInPracticianId}
               style={classes}
             />
             <PricesCard pricesList={practician.prices} style={classes} />
