@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import request from "superagent";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 });
 
 export default function PricesCard(props) {
-  const dispatch = useDispatch();
   const classes = useStyles();
   const auth = useSelector((state) => state.user.auth);
   const pricesList = props.pricesList;

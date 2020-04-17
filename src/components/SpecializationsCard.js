@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSelector } from "react-redux";
+import request from "superagent";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Chip from "@material-ui/core/Chip";
 import Grid from "@material-ui/core/Grid";
 import MoodIcon from "@material-ui/icons/Mood";
+import Button from "@material-ui/core/Button";
+import TagFacesIcon from "@material-ui/icons/TagFaces";
+import SpecializationForm from "./SpecializationForm";
+
+const baseUrl = "http://localhost:4000";
+// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -15,7 +23,44 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SpecializationsCard(props) {
   const classes = useStyles();
-  const specializationsList = props.specializationsList;
+  const [specializations, setSpecializations] = useState(
+    props.specializationsList
+  );
+  const [addForm, setAddForm] = useState(false);
+  const auth = useSelector((state) => state.user.auth);
+
+  const addSpecialization = (data) => {
+    const updatedSpecializations = specializations
+      ? { specializations: [...specializations, data] }
+      : { specializations: [data] };
+
+    request
+      .put(`${baseUrl}/practicians/${props.loggedInPracticianId}`)
+      .send(updatedSpecializations)
+      .set("Authorization", `Bearer ${auth}`)
+      .then((res) => {
+        setSpecializations(res.body.specializations);
+      });
+
+    setAddForm(false);
+  };
+
+  const handleDelete = (specializationToDelete) => {
+    console.log("delete ?");
+    const updatedSpecializationList = specializations.filter(
+      (specialization) => specialization !== specializationToDelete
+    );
+
+    const listToSend = { specializations: updatedSpecializationList };
+
+    request
+      .put(`${baseUrl}/practicians/${props.loggedInPracticianId}`)
+      .send(listToSend)
+      .set("Authorization", `Bearer ${auth}`)
+      .then((res) => {
+        setSpecializations(res.body.specializations);
+      });
+  };
 
   return (
     <Card className={props.style.card} variant="outlined">
@@ -27,11 +72,40 @@ export default function SpecializationsCard(props) {
           </Typography>
         </Grid>
         <hr />
-        {specializationsList
-          ? specializationsList.map((specialization) => {
-              return <Chip label={specialization} className={classes.chip} />;
+        {specializations
+          ? specializations.map((specialization) => {
+              const icon = <TagFacesIcon />;
+
+              return props.loggedInPracticianId === props.practicianId ? (
+                <Chip
+                  label={specialization}
+                  onDelete={() => handleDelete(specialization)}
+                  className={classes.chip}
+                />
+              ) : (
+                <Chip
+                  label={specialization}
+                  icon={icon}
+                  className={classes.chip}
+                />
+              );
             })
           : null}
+        {props.loggedInPracticianId === props.practicianId ? (
+          <div>
+            {addForm ? (
+              <SpecializationForm addSpecialization={addSpecialization} />
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => setAddForm(true)}
+              >
+                Add
+              </Button>
+            )}
+          </div>
+        ) : null}
       </CardContent>
     </Card>
   );
