@@ -22,7 +22,6 @@ export default function PresentationCard(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("submit");
     request
       .put(`${baseUrl}/practicians/${props.loggedInPracticianId}`)
       .send(data)

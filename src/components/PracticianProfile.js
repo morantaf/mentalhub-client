@@ -79,12 +79,24 @@ export default function PracticianProfile(props) {
               loggedInPracticianId={loggedInPracticianId}
               style={classes}
             />
-            <PricesCard pricesList={practician.prices} style={classes} />
-            <SpecializationsCard
-              specializationsList={practician.specializations}
+            <PricesCard
+              pricesList={practician.prices}
+              loggedInPracticianId={loggedInPracticianId}
+              practicianId={practician.id}
               style={classes}
             />
-            <EducationCard education={practician.education} style={classes} />
+            <SpecializationsCard
+              specializationsList={practician.specializations}
+              loggedInPracticianId={loggedInPracticianId}
+              practicianId={practician.id}
+              style={classes}
+            />
+            <EducationCard
+              education={practician.education}
+              loggedInPracticianId={loggedInPracticianId}
+              practicianId={practician.id}
+              style={classes}
+            />
             <ContactCard
               style={classes}
               email={practician.user.email}
