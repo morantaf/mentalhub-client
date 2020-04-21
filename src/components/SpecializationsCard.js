@@ -29,37 +29,42 @@ export default function SpecializationsCard(props) {
   const [addForm, setAddForm] = useState(false);
   const auth = useSelector((state) => state.user.auth);
 
-  const addSpecialization = (data) => {
-    const updatedSpecializations = specializations
-      ? { specializations: [...specializations, data] }
-      : { specializations: [data] };
+  const addSpecialization = async (data) => {
+    try {
+      const updatedSpecializations = specializations
+        ? { specializations: [...specializations, data] }
+        : { specializations: [data] };
 
-    request
-      .put(`${baseUrl}/practicians/${props.loggedInPracticianId}`)
-      .send(updatedSpecializations)
-      .set("Authorization", `Bearer ${auth}`)
-      .then((res) => {
-        setSpecializations(res.body.specializations);
-      });
+      const updatedPractician = await request
+        .put(`${baseUrl}/practicians/${props.loggedInPracticianId}`)
+        .send(updatedSpecializations)
+        .set("Authorization", `Bearer ${auth}`);
 
-    setAddForm(false);
+      setSpecializations(updatedPractician.body.specializations);
+
+      setAddForm(false);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const handleDelete = (specializationToDelete) => {
-    console.log("delete ?");
-    const updatedSpecializationList = specializations.filter(
-      (specialization) => specialization !== specializationToDelete
-    );
+  const handleDelete = async (specializationToDelete) => {
+    try {
+      const updatedSpecializationList = specializations.filter(
+        (specialization) => specialization !== specializationToDelete
+      );
 
-    const listToSend = { specializations: updatedSpecializationList };
+      const listToSend = { specializations: updatedSpecializationList };
 
-    request
-      .put(`${baseUrl}/practicians/${props.loggedInPracticianId}`)
-      .send(listToSend)
-      .set("Authorization", `Bearer ${auth}`)
-      .then((res) => {
-        setSpecializations(res.body.specializations);
-      });
+      const updatedPractician = await request
+        .put(`${baseUrl}/practicians/${props.loggedInPracticianId}`)
+        .send(listToSend)
+        .set("Authorization", `Bearer ${auth}`);
+
+      setSpecializations(updatedPractician.body.specializations);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

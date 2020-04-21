@@ -5,7 +5,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
-  KeyboardDatePicker
+  KeyboardDatePicker,
 } from "@material-ui/pickers";
 import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
@@ -16,25 +16,25 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "inherit"
+    padding: "inherit",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%",
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 function EducationForm(props) {
@@ -46,14 +46,14 @@ function EducationForm(props) {
   const [description, setDescription] = useState("");
 
   const data = { school, diploma, startDate, endDate, description };
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    props.addEducation(data);
-    setSchool("");
-    setDiploma("");
-    setStarDate("");
-    setEndDate("");
-    setDescription("");
+
+    if (data.startDate === "" || data.endDate === "") {
+      alert("Please enter the dates");
+    } else {
+      props.addEducation(data);
+    }
   };
 
   return (
@@ -75,7 +75,7 @@ function EducationForm(props) {
                 name="school"
                 autoComplete="school"
                 value={school}
-                onChange={e => setSchool(e.target.value)}
+                onChange={(e) => setSchool(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -87,7 +87,7 @@ function EducationForm(props) {
                 id="diploma"
                 autoComplete="current-diploma"
                 value={diploma}
-                onChange={e => setDiploma(e.target.value)}
+                onChange={(e) => setDiploma(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -100,32 +100,36 @@ function EducationForm(props) {
                 id="description"
                 autoComplete="current-description"
                 value={description}
-                onChange={e => setDescription(e.target.value)}
+                onChange={(e) => setDescription(e.target.value)}
               />
             </Grid>
           </Grid>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Grid container justify="space-around">
               <KeyboardDatePicker
+                required
                 margin="normal"
                 id="startDate"
                 label="Start date"
                 format="MM/dd/yyyy"
+                disableFuture={true}
                 value={startDate}
-                onChange={date => setStarDate(date)}
+                onChange={(date) => setStarDate(date)}
                 KeyboardButtonProps={{
-                  "aria-label": "change date"
+                  "aria-label": "change date",
                 }}
               />
               <KeyboardDatePicker
+                required
                 margin="normal"
                 id="endDate"
                 label="End date"
                 format="MM/dd/yyyy"
+                disableFuture={true}
                 value={endDate}
-                onChange={date => setEndDate(date)}
+                onChange={(date) => setEndDate(date)}
                 KeyboardButtonProps={{
-                  "aria-label": "change date"
+                  "aria-label": "change date",
                 }}
               />
             </Grid>
