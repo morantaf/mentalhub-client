@@ -8,18 +8,36 @@ import PracticianProfile from "./components/PracticianProfile";
 import PracticiansList from "./components/PracticiansList";
 import PracticianForm from "./components/PracticianForm";
 import Homepage from "./components/Homepage";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#4791db",
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: "#00bfff",
+    },
+  },
+  typography: {
+    fontFamily: '"Helvetica Neue"',
+  },
+});
 
 function App() {
   return (
     <main className="App">
-      <Navbar />
-      <Route exact path="/" component={Homepage} />
-      <Route exact path="/login" component={LoginForm} />
-      <Route path="/signup" component={SignupForm} />
-      <Route path="/practicians/:id" component={PracticianProfile} />
-      <Route path="/practician-form" component={PracticianForm} />
-      <Route exact path="/practicians" component={PracticiansList} />
-      {/* <Footer /> */}
+      <ThemeProvider theme={theme}>
+        <Navbar />
+        <Route exact path="/" component={Homepage} />
+        <Route exact path="/login" component={LoginForm} />
+        <Route path="/signup" component={SignupForm} />
+        <Route path="/practicians/:id" component={PracticianProfile} />
+        <Route path="/practician-form" component={PracticianForm} />
+        <Route exact path="/practicians" component={PracticiansList} />
+        <Footer />
+      </ThemeProvider>
     </main>
   );
 }
