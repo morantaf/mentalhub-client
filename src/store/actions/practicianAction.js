@@ -23,7 +23,7 @@ export const createPractician = (data) => async (dispatch, getState) => {
 
 export const fetchPracticians = () => async (dispatch, getState) => {
   try {
-    const practicians = await request.get(`${baseUrl}/practicians`);
+    const practicians = await request.get(`${baseUrl}/practicians?limit=3`);
     console.log("get practician ?", practicians.body);
     const action = {
       type: "FETCH_PRACTICIANS",

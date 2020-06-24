@@ -16,7 +16,7 @@ import { Paper, Typography } from "@material-ui/core";
 const baseUrl = "http://localhost:4000";
 // const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     flexDirection: "column",
@@ -32,10 +32,7 @@ const useStyles = makeStyles({
     alignSelf: "center",
     marginRight: 10,
   },
-  page: {
-    backgroundColor: "azure",
-  },
-});
+}));
 
 export default function PracticianProfile(props) {
   const dispatch = useDispatch();
@@ -55,8 +52,10 @@ export default function PracticianProfile(props) {
     fetchPractician(id);
   }, []);
 
+  console.log(practician);
+
   return (
-    <div className={classes.page}>
+    <div>
       {practician ? (
         <div>
           <ProfileHeader

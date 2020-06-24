@@ -67,18 +67,17 @@ export default function EducationCard(props) {
         </Grid>
         <hr />
         {education
-          ? education.map((education) => {
+          ? props.education.map((education) => {
               return (
                 <div>
                   <Typography variant="h6" component="h6">
-                    <b>{education.school}</b>
+                    <b>{education.diploma}</b>
                   </Typography>
                   <Typography variant="body1">
-                    <b>Diploma obtained:</b> {education.diploma}
+                    <b>{education.school}</b>
                   </Typography>
-                  <Typography variant="subtitle2">
-                    From :{format(new Date(education.startDate), "MM/dd/yyyy")}{" "}
-                    till {format(new Date(education.endDate), "MM/dd/yyyy")}
+                  <Typography variant="body2">
+                    Date : {education.date}
                   </Typography>
                   {props.loggedInPracticianId === props.practicianId ? (
                     <Button
