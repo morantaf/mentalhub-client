@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     paddingTop: theme.spacing(1),
     paddingBottom: theme.spacing(2),
+    backgroundColor: theme.palette.primary.light,
   },
   title: {
     flexGrow: 1,
@@ -27,14 +28,14 @@ export default function Footer() {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <AppBar color="secondary" position="static">
+    <footer className={classes.root}>
+      <AppBar position="static">
         <Toolbar className={classes.toolbar}>
           <Typography className={classes.title} variant="h5" noWrap>
             Footer
           </Typography>
         </Toolbar>
       </AppBar>
-    </div>
+    </footer>
   );
 }

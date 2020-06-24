@@ -1,12 +1,12 @@
 import React from "react";
 import Header from "./Header";
-import PracticiansList from "./PracticiansList";
+import PracticiansShowcase from "./PracticiansShowcase";
 
 export default function Homepage() {
   return (
     <div>
       <Header />
-      <PracticiansList />
+      <PracticiansShowcase />
     </div>
   );
 }
