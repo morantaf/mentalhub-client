@@ -30,11 +30,7 @@ export default function Footer() {
   return (
     <footer className={classes.root}>
       <AppBar position="static">
-        <Toolbar className={classes.toolbar}>
-          <Typography className={classes.title} variant="h5" noWrap>
-            Footer
-          </Typography>
-        </Toolbar>
+        <Toolbar className={classes.toolbar}></Toolbar>
       </AppBar>
     </footer>
   );
