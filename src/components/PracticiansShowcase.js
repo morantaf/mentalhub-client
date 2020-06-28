@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PracticiansList = ({ fetchPracticians }) => {
+const PracticiansShowcase = ({ fetchPracticians }) => {
   const classes = useStyles();
   const practiciansList = useSelector((state) => state.practician.list);
   useEffect(() => {
@@ -38,12 +38,22 @@ const PracticiansList = ({ fetchPracticians }) => {
 
   return (
     <div className={classes.root}>
+      <Typography variant="h3" className={classes.text} align="center">
+        Find your online psychotherapist
+      </Typography>
       {practiciansList ? (
-        <Grid container className={classes.list} direction="column" spacing={2}>
+        <Grid container className={classes.list} spacing={4}>
           {practiciansList.map((practician) => {
             return (
               <Grid item>
-                <PracticianListing
+                <PracticianCard
+                  firstName={practician.user.firstName}
+                  lastName={practician.user.lastName}
+                  profilePicture={practician.user.profilePicture}
+                  price={practician.prices}
+                  id={practician.id}
+                />
+                {/* <PracticianListing
                   firstName={practician.user.firstName}
                   lastName={practician.user.lastName}
                   profilePicture={practician.user.profilePicture}
@@ -51,14 +61,19 @@ const PracticiansList = ({ fetchPracticians }) => {
                   specializations={practician.specializations}
                   languages={practician.user.languages}
                   id={practician.id}
-                />
+                /> */}
               </Grid>
             );
           })}
         </Grid>
       ) : null}
+      <Link to="/practicians">
+        <Typography variant="h3" className={classes.text} align="center">
+          Search for more
+        </Typography>
+      </Link>
     </div>
   );
 };
 
-export default connect(null, { fetchPracticians })(PracticiansList);
+export default connect(null, { fetchPracticians })(PracticiansShowcase);

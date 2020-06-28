@@ -7,25 +7,25 @@ const useStyles = makeStyles({
   root: {
     height: 250,
     backgroundColor: "navy",
-    alignContent: "center"
+    alignContent: "center",
   },
   profilePicture: {
     width: "100%",
     height: "100%",
-    borderRadius: "50%"
+    borderRadius: "50%",
   },
   imageContainer: {
     marginLeft: "10%",
     width: 180,
     height: 180,
-    marginRight: 20
+    marginRight: 20,
   },
   textContainer: {
-    alignSelf: "center"
+    alignSelf: "center",
   },
   name: {
-    color: "white"
-  }
+    color: "white",
+  },
 });
 
 export default function PricesCard(props) {
@@ -46,9 +46,6 @@ export default function PricesCard(props) {
       <div className={classes.textContainer}>
         <Typography variant="h3" className={classes.name} color="inherit">
           Dr {props.firstName} {props.lastName}
-        </Typography>
-        <Typography variant="h6" className={classes.name} color="inherit">
-          Title
         </Typography>
       </div>
     </Grid>

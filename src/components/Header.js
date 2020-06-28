@@ -4,16 +4,16 @@ import { Typography, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles({
   root: {
-    height: 464,
+    height: 250,
     overflow: "hidden",
-    backgroundImage:
-      "url(https://images.unsplash.com/photo-1518818419601-72c8673f5852?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)",
+    backgroundImage: "linear-gradient(#4791db, #00bfff)",
     flexDirection: "column",
-    placeContent: "center"
+    placeContent: "center",
   },
   text: {
-    color: "white"
-  }
+    color: "white",
+    fontWeight: "bold",
+  },
 });
 
 export default function Header() {
@@ -22,15 +22,12 @@ export default function Header() {
   return (
     <Grid container className={classes.root}>
       <Grid item>
-        <Typography variant="h1" className={classes.text} align="center">
-          Welcome to mentalhub
-        </Typography>
-      </Grid>
-      <Grid item>
         <Typography variant="h3" className={classes.text} align="center">
-          Find your online psychotherapist
+          Improve your mental health
+          <br /> without leaving the comfort of your home
         </Typography>
       </Grid>
+      <Grid item></Grid>
     </Grid>
   );
 }

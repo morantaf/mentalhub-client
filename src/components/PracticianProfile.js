@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import request from "superagent";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PresentationCard from "./PresentationCard";
 import PricesCard from "./PricesCard";
 import SpecializationsCard from "./SpecializationsCard";
@@ -14,35 +13,35 @@ import ProfileHeader from "./ProfileHeader";
 import Calendar from "./Calendar";
 import { Paper, Typography } from "@material-ui/core";
 
-// const baseUrl = "http://localhost:4000";
-const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+const baseUrl = "http://localhost:4000";
+// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     flexDirection: "column",
-    marginTop: 20
+    marginTop: 20,
   },
   card: {
     marginBottom: 10,
     marginTop: 10,
     marginLeft: "20%",
-    width: 800
+    width: 800,
   },
   cardIcon: {
     alignSelf: "center",
-    marginRight: 10
+    marginRight: 10,
   },
-  page: {
-    backgroundColor: "azure"
-  }
-});
+}));
 
 export default function PracticianProfile(props) {
   const dispatch = useDispatch();
   const classes = useStyles();
-  const practician = useSelector(state => state.practician.displayedPractician);
-  const auth = useSelector(state => state.user.auth);
+  const loggedInPracticianId = useSelector((state) => state.user.practicianId);
+  const practician = useSelector(
+    (state) => state.practician.displayedPractician
+  );
+  const auth = useSelector((state) => state.user.auth);
   useEffect(() => {
     const id = props.match.params.id;
     async function fetchPractician(id) {
@@ -53,8 +52,10 @@ export default function PracticianProfile(props) {
     fetchPractician(id);
   }, []);
 
+  console.log(practician);
+
   return (
-    <div className={classes.page}>
+    <div>
       {practician ? (
         <div>
           <ProfileHeader
@@ -71,16 +72,30 @@ export default function PracticianProfile(props) {
               </Paper>
             )}
             <PresentationCard
-              description={practician.presentation}
+              presentation={practician.presentation}
               languages={practician.user.languages}
+              practicianId={practician.id}
+              loggedInPracticianId={loggedInPracticianId}
               style={classes}
             />
-            <PricesCard pricesList={practician.prices} style={classes} />
+            <PricesCard
+              pricesList={practician.prices}
+              loggedInPracticianId={loggedInPracticianId}
+              practicianId={practician.id}
+              style={classes}
+            />
             <SpecializationsCard
               specializationsList={practician.specializations}
+              loggedInPracticianId={loggedInPracticianId}
+              practicianId={practician.id}
               style={classes}
             />
-            <EducationCard education={practician.education} style={classes} />
+            <EducationCard
+              education={practician.education}
+              loggedInPracticianId={loggedInPracticianId}
+              practicianId={practician.id}
+              style={classes}
+            />
             <ContactCard
               style={classes}
               email={practician.user.email}

@@ -1,6 +1,6 @@
 const initialState = {
   displayedPractician: null,
-  list: []
+  list: [],
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -9,6 +9,14 @@ export default (state = initialState, { type, payload }) => {
       return { ...state, displayedPractician: payload };
     case "FETCH_PRACTICIANS":
       return { ...state, list: payload.rows };
+    case "UPDATE_PRESENTATION":
+      return {
+        ...state,
+        displayedPractician: {
+          ...state.displayedPractician,
+          presentation: payload.presentation,
+        },
+      };
     default:
       return state;
   }
