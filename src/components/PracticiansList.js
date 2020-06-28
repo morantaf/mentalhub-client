@@ -38,9 +38,6 @@ const PracticiansList = ({ fetchPracticians }) => {
 
   return (
     <div className={classes.root}>
-      <Typography variant="h3" className={classes.text} align="center">
-        Find your online psychotherapist
-      </Typography>
       {practiciansList ? (
         <Grid container className={classes.list} direction="column" spacing={2}>
           {practiciansList.map((practician) => {
