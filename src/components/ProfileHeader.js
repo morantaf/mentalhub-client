@@ -37,13 +37,13 @@ export default function PricesCard(props) {
         {props.profilePicture ? (
           <img
             className={classes.profilePicture}
-            alt="profile picture"
+            alt="profile"
             src={props.profilePicture}
           />
         ) : (
           <img
             className={classes.profilePicture}
-            alt="profile picture"
+            alt="profile"
             src="https://www.kindpng.com/picc/m/22-223965_no-profile-picture-icon-circle-member-icon-png.png"
           />
         )}
