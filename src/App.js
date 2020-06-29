@@ -5,7 +5,6 @@ import LoginForm from "./components/LoginForm";
 import Footer from "./components/Footer";
 import SignupForm from "./components/SignupForm";
 import PracticianProfile from "./components/PracticianProfile";
-import PracticiansList from "./components/PracticiansShowcase";
 import PracticianForm from "./components/PracticianForm";
 import Homepage from "./components/Homepage";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";

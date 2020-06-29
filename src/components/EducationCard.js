@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { format } from "date-fns";
 import { useSelector } from "react-redux";
 import request from "superagent";
 import EducationForm from "./EducationForm";
@@ -10,8 +9,8 @@ import SchoolIcon from "@material-ui/icons/School";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-const baseUrl = "http://localhost:4000";
-// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+// const baseUrl = "http://localhost:4000";
+const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 export default function EducationCard(props) {
   const [education, setEducation] = useState(props.education);

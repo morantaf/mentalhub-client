@@ -14,8 +14,8 @@ import {
   AppointmentForm,
 } from "@devexpress/dx-react-scheduler-material-ui";
 
-const baseUrl = "http://localhost:4000";
-// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+// const baseUrl = "http://localhost:4000";
+const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 const useStyles = makeStyles({
   root: {
@@ -81,6 +81,7 @@ function Calendar(props) {
       dispatch(action);
     }
     fetchAppointments(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

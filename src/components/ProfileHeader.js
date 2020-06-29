@@ -35,10 +35,15 @@ export default function PricesCard(props) {
     <Grid container className={classes.root}>
       <div className={classes.imageContainer}>
         {props.profilePicture ? (
-          <img className={classes.profilePicture} src={props.profilePicture} />
+          <img
+            className={classes.profilePicture}
+            alt="profile picture"
+            src={props.profilePicture}
+          />
         ) : (
           <img
             className={classes.profilePicture}
+            alt="profile picture"
             src="https://www.kindpng.com/picc/m/22-223965_no-profile-picture-icon-circle-member-icon-png.png"
           />
         )}

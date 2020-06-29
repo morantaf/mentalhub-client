@@ -13,8 +13,8 @@ import ProfileHeader from "./ProfileHeader";
 import Calendar from "./Calendar";
 import { Paper, Typography } from "@material-ui/core";
 
-const baseUrl = "http://localhost:4000";
-// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+// const baseUrl = "http://localhost:4000";
+const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,6 +50,7 @@ export default function PracticianProfile(props) {
       dispatch(action);
     }
     fetchPractician(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(practician);

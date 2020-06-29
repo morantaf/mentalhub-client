@@ -33,6 +33,7 @@ const PracticiansShowcase = ({ fetchPracticians }) => {
   const practiciansList = useSelector((state) => state.practician.list);
   useEffect(() => {
     fetchPracticians(3, 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

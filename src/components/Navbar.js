@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 export default function NavBar() {
   const classes = useStyles();
   const auth = useSelector((state) => state.user.auth);
-  const id = useSelector((state) => state.user.userId);
   const practicianId = useSelector((state) => state.user.practicianId);
 
   return (

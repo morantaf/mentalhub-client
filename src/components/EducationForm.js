@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import { TextField } from "@material-ui/core";

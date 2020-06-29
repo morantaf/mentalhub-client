@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -47,10 +47,15 @@ export const PracticianListing = (props) => {
               to={`/practicians/${props.id}`}
             >
               {props.profilePicture ? (
-                <img className={classes.img} src={props.profilePicture} />
+                <img
+                  className={classes.img}
+                  alt=""
+                  src={props.profilePicture}
+                />
               ) : (
                 <img
                   className={classes.img}
+                  alt=""
                   src="https://www.kindpng.com/picc/m/22-223965_no-profile-picture-icon-circle-member-icon-png.png"
                 />
               )}

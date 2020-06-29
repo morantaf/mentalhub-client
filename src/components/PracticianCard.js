@@ -41,10 +41,15 @@ export default function PracticianCard(props) {
               to={`/practicians/${props.id}`}
             >
               {props.profilePicture ? (
-                <img className={classes.img} src={props.profilePicture} />
+                <img
+                  className={classes.img}
+                  alt=""
+                  src={props.profilePicture}
+                />
               ) : (
                 <img
                   className={classes.img}
+                  alt=""
                   src="https://www.kindpng.com/picc/m/22-223965_no-profile-picture-icon-circle-member-icon-png.png"
                 />
               )}
