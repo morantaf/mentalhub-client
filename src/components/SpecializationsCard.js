@@ -12,8 +12,8 @@ import Button from "@material-ui/core/Button";
 import TagFacesIcon from "@material-ui/icons/TagFaces";
 import SpecializationForm from "./SpecializationForm";
 
-const baseUrl = "http://localhost:4000";
-// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+// const baseUrl = "http://localhost:4000";
+const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 const useStyles = makeStyles((theme) => ({
   chip: {
