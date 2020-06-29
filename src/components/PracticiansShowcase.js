@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { fetchPracticians } from "../store/actions/practicianAction";
 import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { PracticianListing } from "./PracticianListing";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +32,7 @@ const PracticiansShowcase = ({ fetchPracticians }) => {
   const classes = useStyles();
   const practiciansList = useSelector((state) => state.practician.list);
   useEffect(() => {
-    fetchPracticians();
+    fetchPracticians(3, 0);
   }, []);
 
   return (
@@ -53,15 +52,6 @@ const PracticiansShowcase = ({ fetchPracticians }) => {
                   price={practician.prices}
                   id={practician.id}
                 />
-                {/* <PracticianListing
-                  firstName={practician.user.firstName}
-                  lastName={practician.user.lastName}
-                  profilePicture={practician.user.profilePicture}
-                  price={practician.prices}
-                  specializations={practician.specializations}
-                  languages={practician.user.languages}
-                  id={practician.id}
-                /> */}
               </Grid>
             );
           })}

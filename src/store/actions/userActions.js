@@ -1,7 +1,7 @@
 import request from "superagent";
 
-export const baseUrl = "http://localhost:4000";
-// export const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+// export const baseUrl = "http://localhost:4000";
+export const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 export const getJwt = (payload) => ({
   type: "JWT",

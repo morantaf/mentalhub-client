@@ -9,45 +9,46 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
-import Box from "@material-ui/core/Box";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import LinkUI from "@material-ui/core/Link";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "inherit"
+    padding: "inherit",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%",
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
+  div: {
+    minHeight: "73vh",
+  },
 }));
 
 function LoginForm({ login }) {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const jwt = useSelector(state => state.user.auth);
+  const jwt = useSelector((state) => state.user.auth);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     login(email, password);
   };
 
   return (
-    <div>
+    <div className={classes.div}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         {jwt ? (
@@ -84,7 +85,7 @@ function LoginForm({ login }) {
                     name="email"
                     autoComplete="email"
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -98,7 +99,7 @@ function LoginForm({ login }) {
                     id="password"
                     autoComplete="current-password"
                     value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </Grid>
               </Grid>

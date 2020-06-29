@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
 import { connect, useSelector } from "react-redux";
-import PracticianCard from "./PracticianCard";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { fetchPracticians } from "../store/actions/practicianAction";
-import { Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import { PracticianListing } from "./PracticianListing";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +30,7 @@ const PracticiansList = ({ fetchPracticians }) => {
   const classes = useStyles();
   const practiciansList = useSelector((state) => state.practician.list);
   useEffect(() => {
-    fetchPracticians();
+    fetchPracticians(10, 0);
   }, []);
 
   return (

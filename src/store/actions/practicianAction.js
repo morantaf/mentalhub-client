@@ -1,7 +1,7 @@
 import request from "superagent";
 
-const baseUrl = "http://localhost:4000";
-// const baseUrl = "https://hidden-falls-55871.herokuapp.com";
+// const baseUrl = "http://localhost:4000";
+const baseUrl = "https://hidden-falls-55871.herokuapp.com";
 
 export const singlePractician = (payload) => ({
   type: "SINGLE_PRACTICIAN",
@@ -21,11 +21,18 @@ export const createPractician = (data) => async (dispatch, getState) => {
   }
 };
 
-export const fetchPracticians = (data) => async (dispatch, getState) => {
+export const fetchPracticians = (limit, offset, data) => async (
+  dispatch,
+  getState
+) => {
   try {
     let practicians = data
-      ? await request.get(`${baseUrl}/practicians?search=${data}`)
-      : await request.get(`${baseUrl}/practicians`);
+      ? await request.get(
+          `${baseUrl}/practicians?limit=${limit}&offset=${offset}&search=${data}`
+        )
+      : await request.get(
+          `${baseUrl}/practicians?limit=${limit}&offset=${offset}`
+        );
     console.log("get practician ?", practicians.body);
     const action = {
       type: "FETCH_PRACTICIANS",
