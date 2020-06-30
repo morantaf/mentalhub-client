@@ -12,7 +12,8 @@ The idea of mentalhub came with those people in mind. It's aiming to be the plac
 - As a practician, I want to be able to fill my information to create my profile page :white_check_mark:
 - As a patient, I want to be able to set up an appointment with a practician, I need to be logged in to make an appointment :heavy_check_mark:
 - As a user, I want to receive an e-mail when an appointment is made
-- As a patient, I want to be able to see a list of all the practicians
+- As a patient, I want to be able to see a list of all the practicians :heavy_check_mark:
+- As a patient, I want to be able to search the practician by their specializations :heavy_check_mark:
 - As a user, I want to be able to see my appointments to come
 
 ### Legend:
@@ -37,8 +38,9 @@ The idea of mentalhub came with those people in mind. It's aiming to be the plac
 
 ## Demo GIF
 
-![Imgur](https://i.imgur.com/Vofuk5P.png)
-![gif1](https://media.giphy.com/media/TGuKcfvjcScFlTdUmf/giphy.gif)
+![gif1](https://media.giphy.com/media/jqq2TJETFJICRs8sNj/giphy.gif)
+![gif2](https://media.giphy.com/media/frAXxJg5MkCUvMpujq/giphy.gif)
+![gif3](https://media.giphy.com/media/Wt6IkPtNhXZSwqIXcQ/giphy.gif)
 
 ## Creation of the project
 
